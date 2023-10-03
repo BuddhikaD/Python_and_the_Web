@@ -18,7 +18,6 @@ def greeting():
 
 # error handling for user inputs
 def check_err(email, target, spam, choice):
-
     if "@" not in email or "@" not in target:
         print("Error in email/target\nPlease try again\nExiting...\n")
         sys.exit()
@@ -35,7 +34,6 @@ def check_err(email, target, spam, choice):
 
 # generate random spam messages
 def rand_msg(spam):
-
     msg = []
     sub = []
     N = int(input("Enter the length of random messages : "))
@@ -44,7 +42,8 @@ def rand_msg(spam):
         print("Message number #{}/{}".format(i + 1, spam))
         msg.append(
             "".join(
-                random.choice(string.ascii_letters + string.digits) for _ in range(N)
+                random.choice(string.ascii_letters + string.digits)
+                for _ in range(N)
             )
         )
         sub.append(input("Enter subject : "))
@@ -55,7 +54,6 @@ def rand_msg(spam):
 
 # generate user defined messages
 def custom_msg(spam):
-
     msg = []
     sub = []
 
@@ -69,7 +67,6 @@ def custom_msg(spam):
 
 # read files into messages
 def from_file(spam):
-
     msg = []
     sub = []
 
@@ -89,11 +86,12 @@ def from_file(spam):
 
 
 def main():
-
     greeting()
 
     email = input("Enter your email : ")
-    passwd = getpass.getpass("Enter your passwd : ")  # take passwd into as hidden
+    passwd = getpass.getpass(
+        "Enter your passwd : "
+    )  # take passwd into as hidden
 
     target = input("Recipient's email : ")
     spam = input("Number of spam messages : ")

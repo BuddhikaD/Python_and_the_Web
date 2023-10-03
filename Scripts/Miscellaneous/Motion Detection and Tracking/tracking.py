@@ -24,9 +24,7 @@ kernel = np.ones((3, 3), np.uint8)
 
 # Capturing frames
 while cap.isOpened():
-
     try:
-
         diff = cv2.absdiff(
             frame1, frame2
         )  # Difference between two frames (frame1 and frame2)
@@ -34,7 +32,9 @@ while cap.isOpened():
             diff, cv2.COLOR_BGR2GRAY
         )  # Convert the difference frame to gray scale
         g_blur = cv2.GaussianBlur(gray_frame, (5, 5), 0)  # Apply blurring
-        _, th = cv2.threshold(g_blur, 20, 255, cv2.THRESH_BINARY)  # Apply THRESHOLD
+        _, th = cv2.threshold(
+            g_blur, 20, 255, cv2.THRESH_BINARY
+        )  # Apply THRESHOLD
         dilated_frame = cv2.dilate(
             th, kernel=kernel, iterations=3
         )  # Dilation (morphology)

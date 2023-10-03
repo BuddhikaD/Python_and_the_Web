@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 
 
 def search_with_genre(genre):
-
     # Creating the file name (for CSV file) same as input provided
     filename = genre
 
@@ -14,7 +13,11 @@ def search_with_genre(genre):
     genre = genre.replace("&", "")
     genre = (genre.lower()).replace(" ", "_")
 
-    url = "https://www.rottentomatoes.com/top/bestofrt/top_100_" + genre + "_movies"
+    url = (
+        "https://www.rottentomatoes.com/top/bestofrt/top_100_"
+        + genre
+        + "_movies"
+    )
 
     # Requesting and storing the contents of desired webpage in "soup" variable
     result = requests.get(url)
@@ -69,7 +72,9 @@ def search_with_genre(genre):
             for row in range(1, 101):
                 dataset = rows[row].find_all("td")
                 rank = dataset[0].text.replace(".", "")
-                rating = dataset[1].find(attrs={"class": "tMeterScore"}).text[1:]
+                rating = (
+                    dataset[1].find(attrs={"class": "tMeterScore"}).text[1:]
+                )
                 title = (
                     dataset[2]
                     .find("a", attrs={"class": "unstyled articleLink"})

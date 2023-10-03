@@ -16,7 +16,6 @@ from bs4 import BeautifulSoup
 
 
 def main():
-
     # --------------credintials reading-----------!
     config = configparser.ConfigParser()
     config.read("details.ini")
@@ -39,7 +38,6 @@ def main():
         elem.send_keys(username_for_email)
         mark1 = 1
     except AttributeError as exception:
-
         if mark1 == 0:
             driver.refresh()
             time.sleep(2)
@@ -57,7 +55,6 @@ def main():
 
     except AttributeError as exception:
         if mark2 == 0:
-
             driver.refresh()
             time.sleep(3)
             driver.find_element_by_id("identifierNext").click()
@@ -72,7 +69,9 @@ def main():
         mark3 = 1
     except AttributeError as exception:
         if mark3 == 0:
-            driver.find_element_by_name("password").send_keys(password_for_email)
+            driver.find_element_by_name("password").send_keys(
+                password_for_email
+            )
         print("exception has been  thown--> " + str(exception))
         # driver.refresh()
 
@@ -152,9 +151,10 @@ def main():
     try:
         flag = 0
         for i in filed:
-
             # pasting sender's email id
-            driver.find_element_by_class_name("vO").send_keys(sending_email_add)
+            driver.find_element_by_class_name("vO").send_keys(
+                sending_email_add
+            )
             flag = 1
             succ = driver.find_element_by_class_name("btA")
 
@@ -165,7 +165,9 @@ def main():
         if flag == 0:
             driver.refresh()
             time.sleep(4)
-            driver.find_element_by_class_name("vO").send_keys(sending_email_add)
+            driver.find_element_by_class_name("vO").send_keys(
+                sending_email_add
+            )
             driver.find_element_by_class_name("btA").click()
 
         else:

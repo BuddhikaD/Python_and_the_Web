@@ -14,6 +14,7 @@ COLUMN_COUNT = 7
 
 player_names = []
 
+
 # adding players
 def submit():
     player_names.append(player_one.get())
@@ -93,7 +94,12 @@ def draw_board(board):
             pygame.draw.rect(
                 screen,
                 BLACK,
-                (c * SQUARESIZE, r * SQUARESIZE + SQUARESIZE, SQUARESIZE, SQUARESIZE),
+                (
+                    c * SQUARESIZE,
+                    r * SQUARESIZE + SQUARESIZE,
+                    SQUARESIZE,
+                    SQUARESIZE,
+                ),
             )
             pygame.draw.circle(
                 screen,
@@ -131,29 +137,29 @@ def draw_board(board):
 
 
 try:
-
     root = Tk()
     root.resizable(0, 0)
     player_one = StringVar(master=root)
     player_two = StringVar(master=root)
     root.geometry("500x300")
     root.title("Connect 4 Game")
-    Label(master=root, text="Connect 4 Game", font=("Poppins", 30, "normal")).place(
-        x=80, y=20
-    )
+    Label(
+        master=root, text="Connect 4 Game", font=("Poppins", 30, "normal")
+    ).place(x=80, y=20)
     Label(master=root, text="Enter player 1 name: ").place(x=120, y=100)
-    Entry(master=root, textvariable=player_one, font=("calibre", 10, "normal")).place(
-        x=250, y=100
-    )
+    Entry(
+        master=root, textvariable=player_one, font=("calibre", 10, "normal")
+    ).place(x=250, y=100)
     Label(master=root, text="Enter player 2 name: ").place(x=120, y=140)
-    Entry(master=root, textvariable=player_two, font=("calibre", 10, "normal")).place(
-        x=250, y=140
+    Entry(
+        master=root, textvariable=player_two, font=("calibre", 10, "normal")
+    ).place(x=250, y=140)
+    Button(master=root, text="ADD", width=10, command=submit).place(
+        x=210, y=190
     )
-    Button(master=root, text="ADD", width=10, command=submit).place(x=210, y=190)
     root.mainloop()
 
     if player_names[0] != "" and player_names[1] != "":
-
         board = create_board()
 
         game_over = False
@@ -177,7 +183,6 @@ try:
         myfont = pygame.font.SysFont("monospace", 30)
 
         while not game_over:
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
@@ -229,7 +234,9 @@ try:
 
                             if winning_move(board, 2):
                                 label = myfont.render(
-                                    player_names[1] + " wins the game", 1, YELLOW
+                                    player_names[1] + " wins the game",
+                                    1,
+                                    YELLOW,
                                 )
                                 screen.blit(label, (40, 10))
                                 game_over = True

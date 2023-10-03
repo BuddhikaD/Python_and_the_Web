@@ -30,7 +30,9 @@ def chooseFile():
 
     clearFrame()
 
-    label4 = Label(main_frame, text="Chosen file: " + CHOSEN_FILE_LOC.split("/")[-1])
+    label4 = Label(
+        main_frame, text="Chosen file: " + CHOSEN_FILE_LOC.split("/")[-1]
+    )
     button_next = Button(
         main_frame,
         text="CONVERT>> (takes 2-3 minutes)",
@@ -47,7 +49,6 @@ def chooseFile():
 
 # function that contacts convertAPI with the file & carries out the conversion
 def convertToPDF():
-
     global CHOSEN_FILE_LOC
     global CHOSEN_FILE_NAME
 
@@ -60,7 +61,9 @@ def convertToPDF():
     print("format is:  " + file_ext)
     print("trimmed name is:  " + file_name_trimmed)
 
-    result = convertapi.convert("pdf", {"File": CHOSEN_FILE_LOC}, from_format=file_ext)
+    result = convertapi.convert(
+        "pdf", {"File": CHOSEN_FILE_LOC}, from_format=file_ext
+    )
 
     result.file.save(target_folder + "\\" + file_name_trimmed + ".pdf")
 
@@ -82,7 +85,6 @@ def convertToPDF():
 
 # first tkinter window of the code
 def window1():
-
     # define the labels, input box and buttons
     label = Label(
         main_frame, text="Step 1: Sign up at ConvertApi to get your secret key"
@@ -122,7 +124,8 @@ def window2():
     clearFrame()
 
     label3 = Label(
-        main_frame, text="Step 3: Choose the file to be converted(epub or mobi):"
+        main_frame,
+        text="Step 3: Choose the file to be converted(epub or mobi):",
     )
     button_file_choose = Button(
         main_frame,

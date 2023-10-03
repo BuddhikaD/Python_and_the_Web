@@ -95,7 +95,9 @@ class clean_data:
         """
         Purges images from the tex data using tag the '\begin{figure}'
         """
-        imgs = re.findall(r"begin{figure}(.*?)end{figure}", self.tex_data, re.S)
+        imgs = re.findall(
+            r"begin{figure}(.*?)end{figure}", self.tex_data, re.S
+        )
         start = "\\begin{figure}"
         end = "end{figure}"
         imgs = [start + img + end for img in imgs]
@@ -106,7 +108,9 @@ class clean_data:
         """
         Purges tables from the tex data using tag the '\begin{table}'
         """
-        tables = re.findall(r"begin{table}(.*?)end{table}", self.tex_data, re.S)
+        tables = re.findall(
+            r"begin{table}(.*?)end{table}", self.tex_data, re.S
+        )
         start = "\\begin{table}"
         end = "end{table}"
         tables = [start + table + end for table in tables]
@@ -130,7 +134,6 @@ class clean_data:
 # python get_details.py -p papers -o op_json.json
 
 if __name__ == "__main__":
-
     # Define description of the script.
     parser = argparse.ArgumentParser(
         description="extract title,author,abstract,introduction,results,conclusions and acknowledgments from given set of research papers."
@@ -145,7 +148,11 @@ if __name__ == "__main__":
         required=True,
     )
     parser.add_argument(
-        "-output", help="enter path of output file", dest="op", type=str, required=True
+        "-output",
+        help="enter path of output file",
+        dest="op",
+        type=str,
+        required=True,
     )
 
     # Parse the arguments received from the command.
@@ -156,11 +163,12 @@ if __name__ == "__main__":
     all_data = []
 
     # Store all files from the mentioned directory.
-    all_files = [f for f in listdir(directory_path) if isfile(join(directory_path, f))]
+    all_files = [
+        f for f in listdir(directory_path) if isfile(join(directory_path, f))
+    ]
 
     # Read all the files and extract information form each file.
     for tex_file in tqdm(all_files):
-
         p = os.path.join(directory_path, tex_file)
 
         with open(p, "r", encoding="latin-1") as f:
